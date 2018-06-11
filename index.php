@@ -6,23 +6,24 @@
 
         $name = $_POST['name'];
 
-        if(isset($_POST['submit'])){
-            header('Location: second_page.php');
-        }
-        
-        $sql1 = "SELECT * FROM `users` WHERE `name` LIKE '$name';";
-        $result1 = $pdo->query($sql1);
-        $result1->setFetchMode(PDO::FETCH_ASSOC);
-        $result1 = $result1->fetchAll();
-        //var_dump($result1);
+        if($name != NULL){
+            if(isset($_POST['submit'])){
+                header('Location: second_page.php');
+            }
+            
+            $sql1 = "SELECT * FROM `users` WHERE `name` LIKE '$name';";
+            $result1 = $pdo->query($sql1);
+            $result1->setFetchMode(PDO::FETCH_ASSOC);
+            $result1 = $result1->fetchAll();
+            //var_dump($result1);
 
-        if($result1 == false){
-            $sql2 = "INSERT INTO `users`(`name`) VALUES ('$name');";
-            $result2 = $pdo->query($sql2);
-            $result2->setFetchMode(PDO::FETCH_ASSOC);
-            $result2 = $result2->fetchAll();
+            if($result1 == false){
+                $sql2 = "INSERT INTO `users`(`name`) VALUES ('$name');";
+                $result2 = $pdo->query($sql2);
+                $result2->setFetchMode(PDO::FETCH_ASSOC);
+                $result2 = $result2->fetchAll();
+            }
         }
-
         
         $sql3 = "SELECT `id` FROM `users` WHERE `name` LIKE '$name';";
         $id = $pdo->query($sql3);
@@ -39,6 +40,7 @@
     catch(PDOException $e){
         echo $e->getMessage();
     }
+
 ?>
 
 <!DOCTYPE html>
