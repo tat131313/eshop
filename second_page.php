@@ -22,6 +22,14 @@
             $result1 = $pdo->query($sql1);
             $result1->setFetchMode(PDO::FETCH_ASSOC);
             $result1 = $result1->fetchAll();
+
+            if(isset($_POST['delete'])){
+                foreach ($_COOKIE as $i => $value){
+                    if($i != "PHPSESSID"){
+                        setcookie($i,$value,time() + 0);
+                    }
+                }
+            }
         }
 
 
@@ -57,6 +65,12 @@
                     <?php endforeach ?>
 
                 </table>
+            </div>
+            <div align="center">
+                <p><a href='third_page.php'>Go to shoping</a></p>
+            </div>
+            <div align="center">
+                <input type="submit" name="delete" value="Delete shoping">
             </div>
         <?php endif ?>
             

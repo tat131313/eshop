@@ -1,11 +1,16 @@
 <?php
 ob_start();
-var_dump($_GET);
 $id = $_GET['id'];
-//die;
-//посмтотреть ид = если есть +1 = если нету добавить = добавить в куки
-setcookie('id1', $id - количество);
-//header location second_page
+if(isset($_COOKIE[$id])){
+    $q=$_COOKIE[$id] + 1;
+    setcookie($id, $q);
+}
+else{
+    $q=1;
+    setcookie($id, $q);
+}
+var_dump($_COOKIE[$id]);
+header("Location: second_page.php");
 ?>
 <!DOCTYPE html>
 <html>
