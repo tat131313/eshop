@@ -13,8 +13,6 @@
             if($product != NULL && $price != NULL && $category != NULL){
                 $sql1 = "INSERT INTO `goods`(`product`, `category`, `price`) VALUES ('$product', '$category', '$price');";
                 $result1 = $pdo->query($sql1);
-                $result1->setFetchMode(PDO::FETCH_ASSOC);
-                $result1 = $result1->fetchAll();
             }
         }
         if($_SESSION['name'] != "admin"){
@@ -31,8 +29,6 @@
                 }
             }
         }
-
-
     }
     catch(PDOException $e){
         echo $e->getMessage();
